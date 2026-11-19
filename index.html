@@ -1,0 +1,1333 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Un rinconcito especial | Mi Anyecitaa</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #101012;
+            color: #eeeeee;
+            font-family: Georgia, serif;
+            min-height: 100vh;
+        }
+
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            background:
+                linear-gradient(rgba(16,16,18,.62), rgba(16,16,18,.88)),
+                url("https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=2000&q=85")
+                center/cover no-repeat;
+        }
+
+        .subtitulo {
+            color: #d8a9b8;
+            letter-spacing: 4px;
+            font-size: 12px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: clamp(30px,6vw,55px);
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #e6aebe;
+            font-size: clamp(28px,5vw,42px);
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .descripcion {
+            color: #bcb8bd;
+            font-size: 17px;
+            margin-bottom: 40px;
+        }
+
+        button {
+            background: #d8a9b8;
+            color: #191719;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        button:hover {
+            background: #f0c5d2;
+            transform: scale(1.05);
+        }
+
+        button:disabled {
+            opacity: .6;
+            cursor: wait;
+            transform: none;
+        }
+
+        main {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        main[hidden] {
+            display: none;
+        }
+
+        main p {
+            color: #bcb8bd;
+            line-height: 1.8;
+        }
+
+        .sala-naturaleza {
+            padding: 90px 25px;
+            background: #171619;
+            text-align: center;
+        }
+
+        .etiqueta {
+            color: #d8a9b8;
+            letter-spacing: 4px;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        .titulo-sala {
+            color: #e8dfe3;
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .texto-sala {
+            color: #aaa6ab;
+            max-width: 600px;
+            margin: 0 auto 45px;
+            line-height: 1.8;
+        }
+
+        /* TARJETAS GENERALES */
+
+        .contenedor-tarjetas,
+        .galeria-rosas {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .tarjeta {
+            background: #242226;
+            border: 1px solid #49434a;
+            border-radius: 15px;
+            padding: 20px;
+            width: 260px;
+            transition: .3s;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-8px);
+            border-color: #d8a9b8;
+        }
+
+        .imagen-tarjeta {
+            width: 100%;
+            height: 175px;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            background: #302b31;
+        }
+
+        .imagen-tarjeta img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .6s ease;
+        }
+
+        .tarjeta:hover .imagen-tarjeta img,
+        .tarjeta-animal:hover .imagen-tarjeta img {
+            transform: scale(1.07);
+        }
+
+        .tarjeta h3 {
+            color: #e8b4c3;
+            margin-bottom: 15px;
+        }
+
+        .tarjeta p {
+            color: #bcb8bd;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        /* SALA 02 - TU VOCACIÓN */
+
+        .sala-veterinaria {
+            margin-top: 100px;
+            padding: 70px 25px;
+            text-align: center;
+            background: linear-gradient(180deg,#19181c,#242126,#19181c);
+            border-radius: 20px;
+        }
+
+        .sala-veterinaria .titulo-sala,
+        .sala-rosas .titulo-sala,
+        .sala-dedicatoria .titulo-sala {
+            color: #e6c2ce;
+        }
+
+        /* DISTRIBUCIÓN DE LAS TRES TARJETAS */
+
+        .contenedor-veterinaria {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 260px));
+            justify-content: center;
+            align-items: stretch;
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .tarjeta-animal {
+            width: 100%;
+            min-width: 0;
+            padding: 20px;
+            background: #302b31;
+            border: 1px solid #55434d;
+            border-radius: 18px;
+            transition: transform .3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tarjeta-animal:hover {
+            transform: translateY(-8px);
+        }
+
+        /* IMÁGENES DE LA SALA 02 */
+
+        .tarjeta-animal .imagen-tarjeta {
+            width: 100%;
+            height: 190px;
+            flex: 0 0 190px;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            background: #302b31;
+        }
+
+        .tarjeta-animal .imagen-tarjeta img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transition: transform .6s ease;
+        }
+
+        .tarjeta-animal h3 {
+            color: #e6c2ce;
+            margin-bottom: 12px;
+        }
+
+        .tarjeta-animal p {
+            color: #d0c9ce;
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+
+        .mensaje-admiracion {
+            max-width: 650px;
+            margin: 55px auto 0;
+            color: #e6c2ce !important;
+            font-size: 20px;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        /* SALA 03 - ROSAS */
+
+        .sala-rosas {
+            margin-top: 100px;
+            padding: 70px 25px;
+            text-align: center;
+        }
+
+        .galeria-rosas {
+            margin-top: 40px;
+        }
+
+        .rosa-card {
+            width: 270px;
+            overflow: hidden;
+            background: #242126;
+            border: 1px solid #55434d;
+            border-radius: 18px;
+            transition: transform .3s ease, border-color .3s ease;
+        }
+
+        .rosa-card:hover {
+            transform: translateY(-8px);
+            border-color: #d8a9b8;
+        }
+
+        .rosa-imagen {
+            height: 220px;
+            overflow: hidden;
+            background: #211c22;
+        }
+
+        .rosa-imagen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .6s ease;
+        }
+
+        .rosa-card:hover .rosa-imagen img {
+            transform: scale(1.08);
+        }
+
+        .rosa-contenido {
+            padding: 25px 20px;
+        }
+
+        .rosa-contenido h3 {
+            color: #e6c2ce;
+            margin-bottom: 12px;
+        }
+
+        .rosa-contenido p {
+            color: #d0c9ce;
+            line-height: 1.7;
+        }
+
+        .frase-rosas {
+            max-width: 650px;
+            margin: 55px auto 0;
+            color: #e6c2ce !important;
+            font-size: 21px;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        /* SALA 04 - DEDICATORIA */
+
+        .sala-dedicatoria {
+            margin-top: 100px;
+            padding: 90px 25px;
+            text-align: center;
+            background:
+                linear-gradient(rgba(25,24,28,.65),rgba(25,24,28,.78)),
+                url("https://cdn.fondecranvip.com/2025/12/0wAGT91E-fond-decran-Roses-updated-108.webp")
+                center/cover no-repeat;
+            border: 1px solid #55434d;
+            border-radius: 22px;
+        }
+
+        .contenido-dedicatoria {
+            max-width: 700px;
+            margin: 35px auto 0;
+        }
+
+        .contenido-dedicatoria p {
+            color: #e0d8dd;
+            font-size: 17px;
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+
+        .frase-final {
+            color: #e6c2ce !important;
+            font-size: 23px !important;
+            font-style: italic;
+            margin-top: 35px;
+        }
+
+        .firma-dedicatoria {
+            margin-top: 45px;
+            color: #d8a9b8;
+            font-size: 19px;
+        }
+
+        .corazon-final {
+            font-size: 35px;
+            margin-top: 25px;
+            animation: latido 1.5s infinite;
+        }
+
+        @keyframes latido {
+            0%,100% { transform: scale(1); }
+            50% { transform: scale(1.18); }
+        }
+
+        /* SORPRESA FINAL */
+
+        .sorpresa-final {
+            margin: 100px auto 50px;
+            padding: 70px 20px;
+            max-width: 1100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 25px;
+            background:
+                radial-gradient(circle at top,#51233f 0%,transparent 45%),
+                linear-gradient(145deg,#160f19,#251421,#100d14);
+            border: 1px solid #75415e;
+            color: #fceaf2;
+        }
+
+        .sf-etiqueta {
+            color: #e9a5c2;
+            letter-spacing: 4px;
+            font-size: 12px;
+            margin-bottom: 18px;
+        }
+
+        .sorpresa-final h2 {
+            color: #f4c4d8;
+            font-size: clamp(27px,5vw,42px);
+            margin-bottom: 18px;
+        }
+
+        .sf-intro {
+            color: #e5cbd8;
+            max-width: 600px;
+            line-height: 1.8;
+            margin: 0 auto 30px;
+        }
+
+        .sf-boton-abrir {
+            background: linear-gradient(135deg,#ed82b0,#b83d79);
+            color: white;
+            padding: 15px 30px;
+            box-shadow: 0 0 25px #e76ca866;
+        }
+
+        .sf-boton-abrir:hover {
+            background: #f4a6c7;
+        }
+
+        .sf-contenido {
+            display: none;
+            margin-top: 45px;
+            animation: sf-aparecer 1.2s ease forwards;
+        }
+
+        .sf-contenido.visible {
+            display: block;
+        }
+
+        .sf-decoracion {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 35px;
+            margin-bottom: 35px;
+        }
+
+        .sf-rosa,
+        .sf-osito {
+            font-size: 95px;
+            filter: drop-shadow(0 0 18px #ed82b088);
+            animation: sf-flotar 3s ease-in-out infinite;
+        }
+
+        .sf-osito {
+            animation-delay: 1s;
+        }
+
+        .sf-carta {
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 38px 30px;
+            border-radius: 18px;
+            background: linear-gradient(145deg,#f9c6d9,#e99ab9);
+            color: #492437;
+            box-shadow: 0 0 35px #ec83b044;
+            border: 2px solid #ffdce9;
+        }
+
+        .sf-carta h3 {
+            font-size: 29px;
+            color: #a52e66;
+            margin-bottom: 25px;
+        }
+
+        .sf-carta p {
+            color: #492437;
+            font-size: 16px;
+            line-height: 1.9;
+            margin-bottom: 17px;
+        }
+
+        .sf-corazon-separador {
+            color: #b52d69;
+            font-size: 25px;
+            margin: 20px 0;
+        }
+
+        .sf-pregunta {
+            margin: 40px auto 25px;
+            color: #ffb8d4;
+            font-size: clamp(30px,6vw,48px);
+            text-shadow: 0 0 20px #f05b9b88;
+        }
+
+        .sf-botones {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 25px;
+        }
+
+        .sf-botones button {
+            padding: 15px 27px;
+            border-radius: 35px;
+            font-size: 16px;
+        }
+
+        .sf-si {
+            color: white;
+            background: linear-gradient(135deg,#f18ab7,#c83e7c);
+            border: 1px solid #ffc3dc;
+            box-shadow: 0 0 20px #ed75ad77;
+        }
+
+        .sf-pensarlo {
+            color: #f7c5dc;
+            background: transparent;
+            border: 1px solid #d77ba5;
+        }
+
+        .sf-pensarlo:hover {
+            background: #60344d;
+            color: white;
+        }
+
+        .sf-respuesta {
+            display: none;
+            margin: 30px auto 0;
+            max-width: 550px;
+            padding: 20px;
+            border-radius: 15px;
+            background: #ffffff12;
+            color: #ffe1ed;
+            line-height: 1.8;
+            animation: sf-aparecer 1s ease;
+        }
+
+        .sf-respuesta.visible {
+            display: block;
+        }
+
+        .sf-respuesta.error {
+            color: #ffd2d2;
+            border: 1px solid #b85b6a;
+        }
+
+        .sf-corazon-flotante {
+            position: absolute;
+            bottom: -40px;
+            color: #ff80b6;
+            pointer-events: none;
+            animation: sf-subir linear forwards;
+        }
+
+        @keyframes sf-aparecer {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes sf-flotar {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-13px); }
+        }
+
+        @keyframes sf-subir {
+            from {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            15% { opacity: .8; }
+            to {
+                transform: translateY(-650px) rotate(35deg);
+                opacity: 0;
+            }
+        }
+
+        /* PÉTALOS */
+
+        .petalo {
+            position: fixed;
+            top: -40px;
+            z-index: 999;
+            pointer-events: none;
+            user-select: none;
+            color: #f3a1b8;
+            font-size: 18px;
+            opacity: .8;
+            animation: caidaPetalo linear forwards;
+        }
+
+        @keyframes caidaPetalo {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: .8; }
+            90% { opacity: .7; }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* CORAZONES AL TOCAR */
+
+        .corazon {
+            position: fixed;
+            z-index: 1000;
+            pointer-events: none;
+            user-select: none;
+            color: #ff6b91;
+            font-size: 25px;
+            animation: aparecerCorazon 1s ease-out forwards;
+        }
+
+        @keyframes aparecerCorazon {
+            0% {
+                transform: translate(-50%,-50%) scale(.2);
+                opacity: 0;
+            }
+            35% {
+                transform: translate(-50%,-80%) scale(1.3);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%,-150%) scale(.8);
+                opacity: 0;
+            }
+        }
+
+        /* DISEÑO RESPONSIVE */
+
+        @media (max-width:600px) {
+            header { padding: 25px 18px; }
+            h1 { letter-spacing: 1px; }
+
+            .subtitulo,
+            .etiqueta {
+                letter-spacing: 2px;
+                font-size: 10px;
+            }
+
+            main { padding: 35px 12px; }
+
+            .sala-naturaleza,
+            .sala-veterinaria,
+            .sala-rosas,
+            .sala-dedicatoria {
+                padding: 55px 16px;
+            }
+
+            .sala-veterinaria,
+            .sala-rosas,
+            .sala-dedicatoria {
+                margin-top: 55px;
+            }
+
+            .titulo-sala { font-size: 29px; }
+
+            .tarjeta,
+            .rosa-card {
+                width: 100%;
+                max-width: 340px;
+            }
+
+            .contenedor-veterinaria {
+                grid-template-columns: minmax(0, 340px);
+                justify-content: center;
+            }
+
+            .tarjeta-animal .imagen-tarjeta {
+                height: 200px;
+                flex-basis: 200px;
+            }
+
+            .imagen-tarjeta { height: 190px; }
+            .rosa-imagen { height: 210px; }
+
+            .mensaje-admiracion,
+            .frase-rosas {
+                font-size: 18px;
+            }
+
+            .contenido-dedicatoria p { font-size: 15px; }
+
+            .sorpresa-final {
+                margin: 65px auto 35px;
+                padding: 50px 15px;
+            }
+
+            .sf-carta { padding: 28px 18px; }
+
+            .sf-rosa,
+            .sf-osito {
+                font-size: 70px;
+            }
+
+            .sf-botones {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .sf-botones button {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .sorpresa-final *,
+            .sorpresa-final *::before,
+            .sorpresa-final *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <p class="subtitulo">UN PEQUEÑO DETALLE PARA TI</p>
+        <h1>UN RINCONCITO ESPECIAL</h1>
+        <h2>Mi Anyecitaa 💗</h2>
+        <p class="descripcion">Un pequeño mundo creado con cariño.</p>
+        <button id="entrar">Comenzar recorrido ♡</button>
+    </header>
+
+    <main id="museo" hidden>
+
+        <!-- SALA 01 -->
+
+        <section class="sala-naturaleza">
+
+            <p class="etiqueta">SALA 01 · NATURALEZA</p>
+
+            <h2 class="titulo-sala">Un mundo que florece 🌹</h2>
+
+            <p class="texto-sala">
+                Hay belleza en cada semilla,
+                vida en cada hoja y magia
+                en todo aquello que crece.
+                Este espacio celebra tu amor
+                por la naturaleza.
+            </p>
+
+            <div class="contenedor-tarjetas">
+
+                <article class="tarjeta">
+                    <div class="imagen-tarjeta">
+                        <img src="https://tse1.mm.bing.net/th/id/OIP.uQvUbdyFxZ93kAiBmYu4KwHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                            alt="Rosa en flor" loading="lazy">
+                    </div>
+                    <h3>Las rosas</h3>
+                    <p>
+                        No todas las cosas hermosas necesitan ser eternas;
+                        algunas, como las rosas, nos enseñan que la belleza
+                        está en cada instante en que se permiten florecer.
+                    </p>
+                </article>
+
+                <article class="tarjeta">
+                    <div class="imagen-tarjeta">
+                        <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=900&q=85"
+                            alt="Plantas verdes y naturaleza" loading="lazy">
+                    </div>
+                    <h3>La naturaleza</h3>
+                    <p>
+                        Así como la naturaleza encuentra su belleza en
+                        cada pequeño detalle, tú tienes esa bonita capacidad
+                        de encontrar encanto en aquello que muchas veces
+                        pasa desapercibido.
+                    </p>
+                </article>
+
+                <article class="tarjeta">
+                    <div class="imagen-tarjeta">
+                        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=900&q=85"
+                            alt="Persona cuidando y cultivando plantas" loading="lazy">
+                    </div>
+                    <h3>El arte de cultivar</h3>
+                    <p>
+                        Así como una planta necesita paciencia y cariño
+                        para florecer, los sueños y las cosas bonitas
+                        también necesitan un corazón dispuesto a cuidarlos.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- SALA 02 -->
+
+        <section class="sala-veterinaria">
+
+            <p class="etiqueta">SALA 02 · TU VOCACIÓN</p>
+
+            <h2 class="titulo-sala">Un corazón que cuida 🐾</h2>
+
+            <p class="texto-sala">
+                Hay personas que tienen una forma especial
+                de cuidar la vida, y eso también se refleja
+                en lo que hacen cada día.
+            </p>
+
+            <div class="contenedor-veterinaria">
+
+                <div class="tarjeta-animal">
+                    <div class="imagen-tarjeta">
+                        <img src="https://scontent.fsal11-1.fna.fbcdn.net/v/t1.15752-9/916021326_2129768917903836_4608404754241380457_n.jpg?_nc_cat=106&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=fc17b8&_nc_ohc=a-KiKs51PP8Q7kNvwEh7ZVR&_nc_oc=AdoiLyhLmTTDb43VnVAFs6wL1A5Hk8FlLRgXcZAy9b7X0iWVsEQiSohMbrhMtS7BQpw&_nc_zt=23&_nc_ht=scontent.fsal11-1.fna&_nc_ss=7b6a8&oh=03_Q7cD6wGZaT6m54Smu_pJikL-LTwV5E2G-aZ39O74YKiokbalUQ&oe=6B2592AB"
+                            alt="Perro mirando a la cámara" loading="lazy">
+                    </div>
+                    <h3>Amor por los animales</h3>
+                    <p>
+                        La grandeza de un corazón también se mide
+                        por la ternura que entrega a los seres
+                        más indefensos.
+                    </p>
+                </div>
+
+                <div class="tarjeta-animal">
+                    <div class="imagen-tarjeta">
+                        <img src="https://scontent.fsal2-2.fna.fbcdn.net/v/t1.15752-9/916912019_913543808416971_8905255537474813786_n.jpg?_nc_cat=106&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=fc17b8&_nc_ohc=dBVTFimRlcwQ7kNvwH9hCfG&_nc_oc=Adq8DkScssPS3jfjMC4FPvJqZbkrQA2Y3A0vAxgOCyPHzPAgux7JowEU5Bow1tCpgvM&_nc_zt=23&_nc_ht=scontent.fsal2-2.fna&_nc_ss=7b6a8&oh=03_Q7cD6wF3dP84j3FgGfb14oEJyQXeMtBVz5cYYkQMBppOC9FfWg&oe=6B2581D5"
+                            alt="Atención veterinaria a un perro" loading="lazy">
+                    </div>
+                    <h3>Una vocación especial</h3>
+                    <p>
+                        Los sueños más bonitos son aquellos que nacen
+                        del corazón y se persiguen con el alma.
+                    </p>
+                </div>
+
+                <div class="tarjeta-animal">
+                    <div class="imagen-tarjeta">
+                        <img src="https://scontent.fsal3-1.fna.fbcdn.net/v/t1.15752-9/915546832_4640735116072773_6727958089508908307_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=107&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=9f807c&_nc_ohc=vOe5nEFoix8Q7kNvwGKKPww&_nc_oc=AdqCjb7bamL4nQgBusfS8XSx9-MYJ7r2LxoPchux1bkJpbn7L72_gzydf9NnpsZJR6Q&_nc_zt=23&_nc_ht=scontent.fsal3-1.fna&_nc_ss=7baaf&oh=03_Q7cD6wGszCuCItjvWVlDrLu3nzd6lw9rZwNY_qlNkVEcGwDALg&oe=6B258CDB"
+                            alt="Gato con expresión tranquila" loading="lazy">
+                    </div>
+                    <h3>Lo bonito de ti</h3>
+                    <p>
+                        Hay algo muy especial en la forma en que
+                        demuestras cariño por los animales.
+                        Esa ternura y sensibilidad son parte
+                        de lo bonito que hay en ti.
+                    </p>
+                </div>
+
+            </div>
+
+            <p class="mensaje-admiracion">
+                "Quizás no te lo diga siempre,
+                pero hay muchas cosas de ti
+                que merecen ser admiradas."
+            </p>
+
+        </section>
+
+        <!-- SALA 03 -->
+
+        <section class="sala-rosas">
+
+            <p class="etiqueta">SALA 03 · UN DETALLE PARA TI</p>
+
+            <h2 class="titulo-sala">Un jardín de pequeños detalles 🌹</h2>
+
+            <p class="texto-sala">
+                Algunas flores tienen una belleza especial,
+                pero hay personas que hacen que incluso
+                las cosas más sencillas tengan un significado.
+            </p>
+
+            <div class="galeria-rosas">
+
+                <div class="rosa-card">
+                    <div class="rosa-imagen">
+                        <img src="https://images.openai.com/static-rsc-4/DgbVrLRdHcF7YekP0VIrX56CRA7F7sC339Jd2p9pmaRaKFjDIPaCMxDxG3D3AUy5FKjmRwBnaNSKfX6Pejui4n-CEvWtyRsrnJ_vv_sAZ_zRNsy0x7yulIpeIUWnh6rOPsTazTqjCV220eSGCKeP6uz7XU31DiiWj4pDQCnLIfebtFpD0Ec6sZQoV1AH2Ge9?purpose=fullsize"
+                            alt="Rosa rosada" loading="lazy">
+                    </div>
+                    <div class="rosa-contenido">
+                        <h3>Una rosa para ti</h3>
+                        <p>
+                            Esta rosa tiene un pequeño propósito:
+                            recordarte que hay detalles que se preparan
+                            pensando en lo que te gusta y en lo bonito
+                            que es verte sonreír.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="rosa-card">
+                    <div class="rosa-imagen">
+                        <img src="https://images.openai.com/static-rsc-4/i_BfaDXGCqNXDsyu9XuL51YBgS7ZTG9ayrpqzC2RFb7abnHkRygZlBLtWPjCnzank-rOPRHPRK1t73idBc7FGXxL8aJ4Xkd8ntKPG2fOg_UW3AilITGe-YjWoCVGDuzECTBmi4TN66HMrobzbKZII0SsFTcFqo96YJlAJOkpRPD5D48hoercCsWRpQqyrh91?purpose=fullsize"
+                            alt="Flores delicadas en tonos rosados" loading="lazy">
+                    </div>
+                    <div class="rosa-contenido">
+                        <h3>La delicadeza</h3>
+                        <p>
+                            Entre pétalos y colores existe una belleza
+                            que no necesita llamar la atención para destacar;
+                            una belleza que, de alguna manera, me recuerda a ti.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="rosa-card">
+                    <div class="rosa-imagen">
+                        <img src="https://images.unsplash.com/photo-1494972308805-463bc619d34e?auto=format&fit=crop&w=900&q=85"
+                            alt="Arreglo floral" loading="lazy">
+                    </div>
+                    <div class="rosa-contenido">
+                        <h3>Un detalle especial</h3>
+                        <p>
+                            Este jardín reúne algunas de las cosas
+                            que te gustan, pero ninguna flor podría
+                            representar por completo lo especial que es
+                            encontrar a alguien con una pasión tan bonita
+                            por la naturaleza.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <p class="frase-rosas">
+                "Si pudiera regalarte un jardín, lo llenaría de rosas;
+                pero si pudiera darle un significado a cada flor,
+                todas tendrían algo que me recuerda a ti."
+            </p>
+
+        </section>
+
+        <!-- SALA 04 -->
+
+        <section class="sala-dedicatoria">
+
+            <p class="etiqueta">UNAS ÚLTIMAS PALABRAS</p>
+
+            <h2 class="titulo-sala">Algo que quería decirte 💗</h2>
+
+            <div class="contenido-dedicatoria">
+
+                <p>
+                    Quería regalarte algo diferente,
+                    algo que no encontraras en cualquier lugar,
+                    sino algo que llevara un poquito de mi tiempo,
+                    creatividad y cariño.
+                </p>
+
+                <p>
+                    Me gusta conocer esas pequeñas cosas que te hacen ser tú:
+                    lo que te apasiona, lo que disfrutas
+                    y todo aquello que forma parte de tu mundo.
+                </p>
+
+                <p>
+                    No sé si alguna vez te has detenido a pensar
+                    en lo especial que puedes llegar a ser
+                    para alguien, pero quería que supieras
+                    que yo veo muchas cosas bonitas en ti.
+                </p>
+
+                <p class="frase-final">
+                    "Si este pequeño rincón consigue regalarte
+                    una sonrisa, entonces habrá valido la pena
+                    cada detalle."
+                </p>
+
+            </div>
+
+            <div class="firma-dedicatoria">
+                Hecho con mucho cariño, para ti.
+            </div>
+
+            <div class="corazon-final">♡</div>
+
+        </section>
+
+        <!-- ÚLTIMA SORPRESA -->
+
+        <section class="sorpresa-final" id="sorpresaAnye">
+
+            <p class="sf-etiqueta">
+                UNA ÚLTIMA SORPRESA · PARA TI 💗
+            </p>
+
+            <h2>Hay algo que quiero preguntarte...</h2>
+
+            <p class="sf-intro">
+                He guardado un último detalle para el final
+                de este pequeño mundo. Espero que te guste
+                tanto como a mí me gustó prepararlo.
+            </p>
+
+            <button class="sf-boton-abrir" id="sfAbrir">
+                Descubrir mi última sorpresa ♡
+            </button>
+
+            <div class="sf-contenido" id="sfContenido">
+
+                <div class="sf-decoracion">
+                    <div class="sf-rosa">🌹</div>
+                    <div class="sf-osito">🧸</div>
+                </div>
+
+                <div class="sf-carta">
+
+                    <h3>Para mi Anyecitaa ♡</h3>
+
+                    <p>
+                        Hay personas que llegan a nuestra vida
+                        y hacen que todo se vuelva un poquito
+                        más especial. Tú eres una de esas personas.
+                    </p>
+
+                    <p>
+                        Me encanta tu forma de ser, tus gustos,
+                        tus sonrisas y todo lo bonito que voy
+                        descubriendo de ti.
+                    </p>
+
+                    <p>
+                        Quiero que sepas que este pequeño museo
+                        fue una muestra de todo el cariño
+                        con el que pensé en ti.
+                    </p>
+
+                    <p>
+                        Me gustaría seguir creando juntos
+                        muchos momentos bonitos y descubrir
+                        todo lo que podríamos llegar a compartir.
+                    </p>
+
+                    <div class="sf-corazon-separador">♡ ♥ ♡</div>
+
+                    <p>
+                        Por eso, hoy quiero hacerte una pregunta
+                        que significa mucho para mí...
+                    </p>
+
+                </div>
+
+                <h2 class="sf-pregunta">
+                    ¿Quieres ser mi novia, Anye? 💗
+                </h2>
+
+                <div class="sf-botones">
+
+                    <button class="sf-si" id="sfSi">
+                        💗 Sí, quiero
+                    </button>
+
+                    <button class="sf-pensarlo" id="sfPensarlo">
+                        Quiero pensarlo ♡
+                    </button>
+
+                </div>
+
+                <div class="sf-respuesta" id="sfRespuesta" aria-live="polite"></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script>
+        /* =========================================
+           CONFIGURACIÓN DE SUPABASE
+        ========================================= */
+
+        const SUPABASE_URL =
+            "https://aptbgtlbjwpeubyvvfcv.supabase.co";
+
+        const SUPABASE_KEY =
+            "sb_publishable_4zumSASHWBEMt7LIlhA1xw_1xZ3Bz0r";
+
+        /* =========================================
+           ENTRADA AL MUSEO
+        ========================================= */
+
+        const boton = document.getElementById("entrar");
+        const museo = document.getElementById("museo");
+
+        boton.addEventListener("click", function () {
+
+            museo.hidden = false;
+
+            museo.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        });
+
+        /* =========================================
+           PÉTALOS DE ROSAS
+        ========================================= */
+
+        function crearPetalo() {
+
+            const petalo = document.createElement("div");
+
+            petalo.classList.add("petalo");
+            petalo.textContent = "🌸";
+
+            petalo.style.left = Math.random() * 100 + "vw";
+
+            petalo.style.fontSize =
+                (12 + Math.random() * 15) + "px";
+
+            petalo.style.animationDuration =
+                (6 + Math.random() * 6) + "s";
+
+            document.body.appendChild(petalo);
+
+            setTimeout(() => {
+                petalo.remove();
+            }, 12000);
+
+        }
+
+        setInterval(crearPetalo, 500);
+
+        /* =========================================
+           CORAZONES AL TOCAR LA PANTALLA
+        ========================================= */
+
+        document.addEventListener("pointerdown", function (event) {
+
+            const corazon = document.createElement("div");
+
+            corazon.classList.add("corazon");
+            corazon.textContent = "💗";
+
+            corazon.style.left = event.clientX + "px";
+            corazon.style.top = event.clientY + "px";
+
+            document.body.appendChild(corazon);
+
+            setTimeout(() => {
+                corazon.remove();
+            }, 1000);
+
+        });
+
+        /* =========================================
+           ABRIR LA ÚLTIMA SORPRESA
+        ========================================= */
+
+        const sfAbrir = document.getElementById("sfAbrir");
+        const sfContenido = document.getElementById("sfContenido");
+        const sfRespuesta = document.getElementById("sfRespuesta");
+
+        sfAbrir.addEventListener("click", function () {
+
+            sfContenido.classList.add("visible");
+            sfAbrir.style.display = "none";
+
+            sfContenido.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        });
+
+        /* =========================================
+           ENVIAR RESPUESTA A SUPABASE
+        ========================================= */
+
+        let respuestaEnviada = false;
+        let enviandoRespuesta = false;
+
+        async function guardarRespuesta(respuesta) {
+
+            if (enviandoRespuesta || respuestaEnviada) {
+                return;
+            }
+
+            enviandoRespuesta = true;
+
+            const botonSi = document.getElementById("sfSi");
+            const botonPensarlo = document.getElementById("sfPensarlo");
+
+            botonSi.disabled = true;
+            botonPensarlo.disabled = true;
+
+            sfRespuesta.className = "sf-respuesta visible";
+            sfRespuesta.textContent = "Guardando tu respuesta... 💗";
+
+            try {
+
+                const url =
+                    SUPABASE_URL + "/rest/v1/respuestas_anye";
+
+                const resultado = await fetch(url, {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json",
+                        "apikey": SUPABASE_KEY,
+                        "Authorization": "Bearer " + SUPABASE_KEY,
+                        "Prefer": "return=minimal"
+                    },
+
+                    body: JSON.stringify({
+                        respuesta: respuesta
+                    })
+
+                });
+
+                if (!resultado.ok) {
+
+                    const detalle = await resultado.text();
+
+                    throw new Error(
+                        "Supabase respondió " +
+                        resultado.status + ": " + detalle
+                    );
+
+                }
+
+                respuestaEnviada = true;
+
+                botonSi.style.display = "none";
+                botonPensarlo.style.display = "none";
+
+                sfRespuesta.className = "sf-respuesta visible";
+
+                if (respuesta === "Sí, quiero") {
+
+                    sfRespuesta.textContent =
+                        "¡Me acabas de regalar una sonrisa enorme! 💗 " +
+                        "Gracias por darme esta oportunidad. " +
+                        "Espero que podamos construir algo muy bonito juntos. 🌹";
+
+                    lanzarCorazones();
+
+                } else {
+
+                    sfRespuesta.textContent =
+                        "No tienes que apresurarte, Anye. " +
+                        "Tómate el tiempo que necesites. " +
+                        "Lo importante es que te sientas cómoda " +
+                        "y que tu respuesta sea sincera. 💗";
+
+                }
+
+            } catch (error) {
+
+                console.error("Error al guardar:", error);
+
+                sfRespuesta.className = "sf-respuesta visible error";
+
+                sfRespuesta.textContent =
+                    "No pudimos guardar tu respuesta en este momento. " +
+                    "Por favor, comprueba tu conexión e inténtalo nuevamente. 💗";
+
+                botonSi.disabled = false;
+                botonPensarlo.disabled = false;
+
+            } finally {
+
+                enviandoRespuesta = false;
+
+            }
+
+        }
+
+        /* =========================================
+           BOTÓN: SÍ, QUIERO
+        ========================================= */
+
+        document.getElementById("sfSi").addEventListener(
+            "click",
+            function () {
+                guardarRespuesta("Sí, quiero");
+            }
+        );
+
+        /* =========================================
+           BOTÓN: QUIERO PENSARLO
+        ========================================= */
+
+        document.getElementById("sfPensarlo").addEventListener(
+            "click",
+            function () {
+                guardarRespuesta("Quiero pensarlo");
+            }
+        );
+
+        /* =========================================
+           CORAZONES DE LA DECLARACIÓN
+        ========================================= */
+
+        function lanzarCorazones() {
+
+            for (let i = 0; i < 18; i++) {
+
+                const corazon = document.createElement("span");
+
+                corazon.className = "sf-corazon-flotante";
+                corazon.textContent = "💗";
+
+                corazon.style.left =
+                    Math.random() * 95 + "%";
+
+                corazon.style.fontSize =
+                    (15 + Math.random() * 20) + "px";
+
+                corazon.style.animationDuration =
+                    (3 + Math.random() * 3) + "s";
+
+                document.getElementById("sorpresaAnye")
+                    .appendChild(corazon);
+
+                corazon.addEventListener("animationend", function () {
+                    corazon.remove();
+                });
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>
